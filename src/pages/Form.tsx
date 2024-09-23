@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Steps, message } from "antd";
+import { Form, Input, Button, Steps, message, Select } from "antd";
 
 const { Step } = Steps;
 
@@ -9,12 +9,12 @@ const SubForm: React.FC = () => {
 
   // Bosqichlar
   const steps = [
-    { title: "Personal Info", content: <Step1 /> },
-    { title: "Contact Info", content: <Step2 /> },
-    { title: "Additional Info", content: <Step3 /> },
-    { title: "Education", content: <Step4 /> },
-    { title: "Work Experience", content: <Step5 /> },
-    { title: "Confirmation", content: <Step6 /> },
+    { title: "Business structure", content: <Step1 /> },
+    { title: "Business representative", content: <Step2 /> },
+    { title: "Business details", content: <Step3 /> },
+    { title: "Bank details", content: <Step4 /> },
+    { title: "Bank details", content: <Step5 /> },
+    { title: "Bank details", content: <Step6 /> },
   ];
 
   // Keyingi va avvalgi bosqichlar o'rtasida almashish
@@ -75,11 +75,54 @@ const SubForm: React.FC = () => {
 };
 
 // Step 1
+const { Option } = Select;
+
 const Step1: React.FC = () => {
   return (
     <Form layout="vertical">
-      <Form.Item label="Name" name="name" rules={[{ required: true }]}>
-        <Input placeholder="Enter your name" />
+      {/* Business Address Section */}
+      <h3 className="text-lg font-semibold mb-2">Business Address</h3>
+
+      <Form.Item
+        label="Business address"
+        name="businessAddress"
+        rules={[{ required: true }]}
+      >
+        <Select
+          placeholder="Select your business address"
+          className="w-full md:w-3/4"
+        >
+          <Option value="office1">Office 1</Option>
+          <Option value="office2">Office 2</Option>
+          <Option value="office3">Office 3</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item label="Type" name="type" rules={[{ required: true }]}>
+        <Select placeholder="Select type" className="w-[400px] ">
+          <Option value="type1">Type 1</Option>
+          <Option value="type2">Type 2</Option>
+          <Option value="type3">Type 3</Option>
+        </Select>
+      </Form.Item>
+
+      {/* Address Section */}
+      <h3 className="text-lg font-semibold mt-4 mb-2">Address</h3>
+
+      <Form.Item name="addressLine1" rules={[{ required: true }]}>
+        <Input placeholder="Address line 1" className="w-[310px] " />
+      </Form.Item>
+
+      <Form.Item name="addressLine2">
+        <Input placeholder="Address line 2" className="w-[310px] " />
+      </Form.Item>
+
+      <Form.Item label="City" name="city" rules={[{ required: true }]}>
+        <Input placeholder="Enter city" className="w-[310px] " />
+      </Form.Item>
+
+      <Form.Item label="Zip" name="zip" rules={[{ required: true }]}>
+        <Input placeholder="Enter zip code" className="w-[310px] " />
       </Form.Item>
     </Form>
   );
